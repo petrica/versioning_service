@@ -14,6 +14,7 @@ framework.
 
 """
 import os
+import sys
 
 # We defer to a DJANGO_SETTINGS_MODULE already in the environment. This breaks
 # if running multiple sites in the same mod_wsgi process. To fix this, use
@@ -32,7 +33,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "versioning_service.settings")
 # Apply WSGI middleware here.
 # from helloworld.wsgi import HelloWorldApplication
 # application = HelloWorldApplication(application)
-from django.core.wsgi import get_wsgi_application
-from dj_static import Cling
+sys.path.insert(1, os.path.dirname(os.path.realpath(__file__)))
 
-application = Cling(get_wsgi_application())
+from django.core.wsgi import get_wsgi_application
+application = get_wsgi_application()

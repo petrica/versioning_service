@@ -1,1 +1,1 @@
-web: gunicorn version_service.wsgi
+web: gunicorn_django --pythonpath=. --settings=versioning_service.settings
