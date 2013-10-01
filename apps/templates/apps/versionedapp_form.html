@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Create new application</h3>
+<form method="post">
+    {%csrf_token%}
+    {{ form }}
+    <div class="text-right">
+        <input type="submit" class="button"/>
+    </div>
+</form>
+{% endblock %}

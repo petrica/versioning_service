@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block breadcrumbs %}
+<ul class="breadcrumbs">
+  <li><a href="{% url 'list_apps' %}">Home</a></li>
+  <li class="current"><a href="{% url 'details_versioned_app' pk=object.pk %}">{{object.name}}</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+
+<h4>App: {{object.name}}</h4>
+<p>Total known branches: {{object.branches.count}}</p>
+
+<h5>Branches:</h5>
+<table width="100%">
+    <thead>
+        <tr>
+            <th>Branch</th>
+            <th>Latest version</th>
+        </tr>
+    <thead>
+    <tbody>
+{% for branch in object.branches %}
+<tr>
+    <td>{{branch.name}} </td><td>{{branch.highest_version}}</td>
+</tr>
+{% empty %}
+<tr>
+    <td>No branches known</td>
+</tr>
+{% endfor %}
+    </tbody>
+</table>
+{% endblock %}

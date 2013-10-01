@@ -1,0 +1,48 @@
+{%extends "base.html" %}
+{% block content %}
+    <div class="row">
+        <div class="columns large-8">
+            <h4>Applications <a data-reveal-id="id-api-key-modal" class="button tiny">show api key</a></h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="column">
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>Application name</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for app in object_list%}
+                    <tr>
+                        <td>
+                            {{app.name}}
+                        </td>
+                        <td>
+                            <a href="{{app.get_absolute_url}}" class="button small">DETAILS</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="2">
+                            <p>No apps found</p>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="text-right"><a href="/apps/create" class="button small"> + ADD NEW</a></div>
+        </div>
+    </div>
+
+
+
+    <div id="id-api-key-modal" class="reveal-modal">
+        <div> {{user.api_key.key}} </div>
+    </div>
+
+{% endblock %}
