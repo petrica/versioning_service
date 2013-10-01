@@ -194,6 +194,7 @@ EMAIL_HOST_PORT = os.environ.get('EMAIL_PORT', 25)
 if type(EMAIL_HOST_PORT) is str:
     EMAIL_HOST_PORT = int(EMAIL_HOST_PORT)
 
+DEFAULT_FROM_EMAIL = 'pleasemailus@wercker.com'
 EMAIL_USE_TLS = os.environ.get('EMAIL_TLS', False)
 
 if EMAIL_USE_TLS and EMAIL_USE_TLS.lower() == 'true':
