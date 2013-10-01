@@ -1,1 +1,1 @@
-web gunicorn version_service.wsgi
+web: gunicorn version_service.wsgi
