@@ -10,7 +10,52 @@
 {% block content %}
 
 <h4>App: {{object.name}}</h4>
-<p>Total known branches: {{object.branches.count}}</p>
+<p>To get an existing or create a version number, you have to make a not-so pretty REST call, however it
+saves complexety for possible wercker steps.<br/>
+Simply call {% url 'api_dispatch_list' resource_name='branch_version' api_name='v1' %} (GET), with the following parameters:
+</p>
+<table width="100%">
+    <thead>
+        <tr>
+            <th>Parameter:</th>
+            <th>Value:</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>username (required)</td>
+            <td>
+                {{user.username}}
+            </td>
+        </tr>
+        <tr>
+            <td>api_key (required)</td>
+            <td>{{user.api_key.key}}</td>
+        </tr>
+        <tr>
+            <td>for_app (required)</td>
+            <td>{{object.pk}}</td>
+        </tr>
+        <tr>
+            <td>for_branch (required)</td>
+            <td>[the branch name || fixed branch name]<br/>
+                Note: Version numbers are kept per branch. So for a global build "number"
+                use a fixed branch name
+            </td>
+        </tr>
+        <tr>
+            <td>commit_hash (required)</td>
+            <td>[a commit hash]</td>
+        </tr>
+    </tbody>
+</table>
+
+    <p> Example: <br/>
+    <textarea readonly>http://{{domain}}{% url 'api_dispatch_list' resource_name='branch_version' api_name='v1' %}?username={{user.username}}&amp;api_key={{user.api_key.key}}&amp;for_app={{object.pk}}&amp;for_branch=[your_branch||constant_branch_name]&amp;commit_hash=[a commit hash]</textarea>
+
+    </li>
+</ul>
+
 
 <h5>Branches:</h5>
 <table width="100%">

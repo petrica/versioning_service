@@ -2,6 +2,7 @@
 from django.views.generic import CreateView, DetailView, ListView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.contrib.sites.models import Site
 
 from apps.models import VersionedApp
 from apps.forms import VersionedAppForm
@@ -44,8 +45,7 @@ class DetailVersionedApp(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(DetailVersionedApp, self).get_context_data(**kwargs)
-        # print "context"
-        print context['object'].branches()
+        context['domain'] = Site.objects.get_current().domain
         return context
 
     def get_queryobject(self):

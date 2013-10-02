@@ -99,7 +99,6 @@ class BranchVersionResource(ModelResource):
                 id=app
             )
 
-            print "eh,,,", queried_app
             if queried_app.count() == 1:
                 print "count", objects.count()
                 if objects.count() == 0:
@@ -107,8 +106,6 @@ class BranchVersionResource(ModelResource):
                         related_app=queried_app[0],
                         name=branch_name
                     )
-
-                    print branch, new_branch
 
                     if new_branch is True:
                         # BranchResource
