@@ -79,7 +79,7 @@ class BranchVersionResource(ModelResource):
             objects = objects.filter(related_branch__related_app=app)
 
         branch_name = bundle.request.GET.get(
-            'for_branch__name',
+            'for_branch',
             None
         )
 
@@ -91,8 +91,6 @@ class BranchVersionResource(ModelResource):
             None
         )
 
-        print app, branch_name, commit_hash
-
         if app and branch_name and commit_hash:
             queried_app = VersionedApp.objects.filter(
                 owner=bundle.request.user,
@@ -100,7 +98,6 @@ class BranchVersionResource(ModelResource):
             )
 
             if queried_app.count() == 1:
-                print "count", objects.count()
                 if objects.count() == 0:
                     branch, new_branch = Branch.objects.get_or_create(
                         related_app=queried_app[0],
@@ -144,14 +141,6 @@ class BranchVersionResource(ModelResource):
                             )
 
                             bv.save()
-                print locals()
-
-        # print(
-        #     objects,
-        #     app,
-        #     branch_name,
-        #     bundle.request.GET.get('related_branch__related_app', None)
-        # )
 
         return objects
 
