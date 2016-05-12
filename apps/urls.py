@@ -19,7 +19,7 @@ urlpatterns = patterns(
     ),
 
     url(
-        r'^apps/(?P<pk>\d)/$',
+        r'^apps/(?P<pk>\d+)/$',
         DetailVersionedApp.as_view(),
         name="details_versioned_app"
     ),
