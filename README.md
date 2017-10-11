@@ -65,3 +65,11 @@ And finally: please update DEFAULT_FROM_EMAIL the email address in
 `versioning_service/settings.py` file.
 
 Happy coding!
+
+## Docker Version
+
+Running the application from CLI and prefixing the URI with `prefix/` if required.
+
+```bash
+docker run -p 8000:8000 -e APP_PREFIX=prefix/ --rm --name versioning_service petrica/versioning_service
+```
