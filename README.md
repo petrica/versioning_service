@@ -68,8 +68,8 @@ Happy coding!
 
 ## Docker Version
 
-Running the application from CLI and prefixing the URI with `prefix/` if required.
+Running the application from CLI and prefixing the URI with `prefix/` if required and custom database path to file.
 
 ```bash
-docker run -p 8000:8000 -e APP_PREFIX=prefix/ --rm --name versioning_service petrica/versioning_service
+docker run -p 8000:8000 -e APP_PREFIX=prefix/ -e DATABASE_PATH={0}/dev.sqlite --rm --name versioning_service petrica/versioning_service
 ```
